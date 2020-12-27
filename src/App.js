@@ -9,11 +9,13 @@ class App {
         this._app.use(express.json());
         this._app.use('/', express.static(path.resolve(__dirname, '../public')));
 
-        this._app.post('/checkUser', this.onChekUser);
+        this._app.post('/addUser', this.onChekUser);
         this._app.get('/getChat', this.onGetChat);
-        this._app.post('/addNewMessage', this.addNewMessage);
+        this._app.post('/addMessage', this.addNewMessage);
         this._app.post('/deleteUser', this.userOff);
     }
+
+    getApp = () => this._app;
 
     onGetChat = (req, res) => {
         const chat = this._db.getChat();
@@ -31,7 +33,6 @@ class App {
     }
 
     addNewMessage = (req, res) => {
-        console.log(req);
         const { body } = req.json();
 
         this._db.setMessage(body);

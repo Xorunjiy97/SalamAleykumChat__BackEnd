@@ -25,9 +25,11 @@ class Model {
     getUser = newUser => {
         const currUser = this.users.indexOf(newUser);
         if(currUser =! -1){
+
             return false;
         }else{
            this.addUser(newUser);
+           
            return true;
         }
     }
