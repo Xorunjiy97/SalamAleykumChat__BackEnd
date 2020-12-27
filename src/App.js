@@ -25,7 +25,7 @@ class App {
     }
 
     onChekUser = (req, res) => {
-        const { body } = req.json();
+        const { body } = req;
         const check = this._db.getUser(body);
 
         res.send(check);
@@ -33,7 +33,7 @@ class App {
     }
 
     addNewMessage = (req, res) => {
-        const { body } = req.json();
+        const { body } = req;
 
         this._db.setMessage(body);
 
@@ -41,7 +41,7 @@ class App {
     }
 
     userOff = (req, res) => {
-        const { body } = req.json();
+        const { body } = req;
         const deleteUser = this._db.deleteUser(body);
 
         res.send(deleteUser);
