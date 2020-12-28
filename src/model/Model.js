@@ -1,7 +1,7 @@
 class Model {
     constructor() {
-        this.chat = [];
-        this.users = null;
+        this.chat = [{ userName: 'sasha', message: 'salam alllll' }, { userName: 'sasha', message: 'salam alllll' }];
+        this.users = [];
     }
 
     getChat = () => this.chat;
@@ -11,11 +11,8 @@ class Model {
         this.chat.push(newMessage);
     }
 
-    deleteUser = user => {
-        const currUser = this.users.indexOf(user);
-        this.users.splice(currUser);
-        
-        return true;
+    deleteUser = userName => {
+        this.users = this.users.filter(user => userName === user);
     }
 
     addUser = newUser => {
@@ -23,14 +20,12 @@ class Model {
     }
 
     getUser = newUser => {
-        const currUser = this.users.indexOf(newUser);
-        if(currUser =! -1){
-
+        const check = this.users.some(user => newUser === user);
+        if(check){
             return false;
-        }else{
-           this.addUser(newUser);
-           
-           return true;
+        } else {
+            this.addUser(newUser);
+            return true;
         }
     }
 }

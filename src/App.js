@@ -9,10 +9,12 @@ class App {
         this._app.use(express.json());
         this._app.use('/', express.static(path.resolve(__dirname, '../public')));
 
+        this._app.use(this.headerCors);
+
         this._app.post('/addUser', this.onChekUser);
         this._app.get('/getChat', this.onGetChat);
         this._app.post('/addMessage', this.addNewMessage);
-        this._app.post('/deleteUser', this.userOff);
+        this._app.delete('/deleteUser', this.userOff);
     }
 
     getApp = () => this._app;
@@ -25,8 +27,8 @@ class App {
     }
 
     onChekUser = (req, res) => {
-        const { body } = req;
-        const check = this._db.getUser(body);
+        const { userName } = req.body;
+        const check = this._db.getUser(userName);
 
         res.send(check);
         res.end();
@@ -42,10 +44,16 @@ class App {
 
     userOff = (req, res) => {
         const { body } = req;
-        const deleteUser = this._db.deleteUser(body);
+        this._db.deleteUser(body);
 
-        res.send(deleteUser);
         res.end();
+    }
+
+    headerCors = (req, res, next) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header("Access-Control-Allow-Methods", "GET, POST, DELETE");
+        next();
     }
 }
 
