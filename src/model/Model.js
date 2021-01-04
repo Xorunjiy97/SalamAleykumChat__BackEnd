@@ -17,7 +17,6 @@ class Model {
 
     addUserToDb = newUser => {
         const check = this.logedUsers.some(user => newUser === user);
-        console.log(check);
         if(check){ 
             return false;
         } else {
