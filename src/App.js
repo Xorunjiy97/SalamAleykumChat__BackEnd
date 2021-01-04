@@ -36,8 +36,8 @@ class App {
     };
 
     logIn = (req, res) => {
-        const { user } = req.body;
-        res.send(this._db.addUserToDb(user));
+        const { userName } = req.body;
+        res.send(this._db.addUserToDb(userName));
         res.end();
     };
 
