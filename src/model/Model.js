@@ -1,6 +1,6 @@
 class Model {
     constructor() {
-        this._messages = [{user: 'Alyosha', message: 'mau'}];
+        this._messages = [{user: 'SA-team', message: 'Salam Aleykum'}];
 
         this.logedUsers = [];
     }
